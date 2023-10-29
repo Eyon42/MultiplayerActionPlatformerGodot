@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b52xm3x4d5h15"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_pcue5"]
+[ext_resource type="Texture2D" uid="uid://c30h5ag2rm768" path="res://icon.svg" id="2_4a46m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f40kb"]
+size = Vector2(28, 8)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t4npo"]
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_pcue5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(15, 0)
+scale = Vector2(0.220703, 0.0625)
+texture = ExtResource("2_4a46m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_f40kb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="BulletDamage" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_f40kb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t4npo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

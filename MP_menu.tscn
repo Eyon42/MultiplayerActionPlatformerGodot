@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://c666ncbp8xpb2"]
+
+[ext_resource type="Script" path="res://MultiplayerControl.gd" id="1_ipaqd"]
+[ext_resource type="Script" path="res://LineEdit.gd" id="2_uviww"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipaqd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Name"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_uviww")
+
+[node name="Host" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join
+"
+
+[node name="StartGame" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[connection signal="button_down" from="HBoxContainer/VBoxContainer/Host" to="." method="_on_host_button_down"]
+[connection signal="button_down" from="HBoxContainer/VBoxContainer/Join" to="." method="_on_join_button_down"]
+[connection signal="button_down" from="HBoxContainer/VBoxContainer/StartGame" to="." method="_on_start_game_button_down"]
